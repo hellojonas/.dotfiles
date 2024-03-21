@@ -8,6 +8,7 @@ local function setup()
                 callSnippet = 'Replace',
               },
             },
+            diagnostics = { disable = { 'missing-fields' } }
         },
         gopls = {},
         jdtls = {}

@@ -7,8 +7,15 @@ local function setup()
     return
   end
 
-  local jdtls_path = vim.fn.stdpath('data') .. "/mason/packages/jdtls/jdtls"
-  local lombok_path = vim.fn.stdpath('data') .. "/mason/packages/jdtls/lombok.jar"
+  local isWin = package.config:sub(1,1) == '\\'
+  local config_folder = 'config_linux'
+
+  if isWin then
+      config_folder = 'config_win'
+  end
+
+  local jdtls_root = vim.fn.stdpath('data') .. "/mason/packages/jdtls"
+  local lombok_path = jdtls_root .. "/lombok.jar"
   local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
   local root_dir = require("jdtls.setup").find_root(root_markers)
 
@@ -30,32 +37,60 @@ local function setup()
   capabilities.resolveAdditionalTextEditsSupport = true
 
   local config = {
-    cmd = {
-      jdtls_path,
-      '--jvm-arg=-javaagent:' .. lombok_path,
-      '-data', workspace_dir,
-    },
+      cmd = {
+          "java",
+          "-Declipse.application=org.eclipse.jdt.ls.core.id1",
+          "-Dosgi.bundles.defaultStartLevel=4",
+          "-Declipse.product=org.eclipse.jdt.ls.core.product",
+          "-Dosgi.checkConfiguration=true",
+          "-Dosgi.sharedConfiguration.area=" .. jdtls_root .. "/" .. config_folder,
+          "-Dosgi.sharedConfiguration.area.readOnly=true",
+          "-Dosgi.configuration.cascaded=true",
+          "-Xms1G",
+          "--add-modules=ALL-SYSTEM",
+          "--add-opens", "java.base/java.util=ALL-UNNAMED",
+          "--add-opens", "java.base/java.lang=ALL-UNNAMED",
+          "-javaagent:" .. lombok_path,
+          "-jar", jdtls_root .. '/plugins' .. "/org.eclipse.equinox.launcher_1.6.700.v20231214-2017.jar", -- TODO: glob this with lua itself
+          "-data", workspace_dir,
+      },
     root_dir = root_dir,
     init_options = {
       extendedClientCapabilities = capabilities,
     },
-    -- on_attach = on_attach,
+    on_attach = on_attach,
   }
+
+  local runtimes = {}
+  if isWin then
+      runtimes = {
+          {
+              name = "JavaSE-1.8",
+              path = "C:/Program Files/Java/jdk1.8.0_222/",
+          },
+          {
+              name = "JavaSE-17",
+              path = "C:/Program Files/Java/jdk-17.0.5/",
+          },
+      }
+  else
+      runtimes = {
+          {
+              name = "JavaSE-1.8",
+              path = "/usr/lib/jvm/java-8-openjdk/",
+          },
+          {
+              name = "JavaSE-17",
+              path = "/usr/lib/jvm/java-17-openjdk/",
+          },
+      }
+  end
 
   config.settings = {
     java = {
-      configuration = {
-        runtimes = {
-          {
-            name = "JavaSE-1.8",
-            path = "/usr/lib/jvm/java-8-openjdk/",
-          },
-          {
-            name = "JavaSE-17",
-            path = "/usr/lib/jvm/java-17-openjdk/",
-          },
+        configuration = {
+            runtimes = runtimes
         }
-      }
     },
     capabilities = capabilities,
   }
