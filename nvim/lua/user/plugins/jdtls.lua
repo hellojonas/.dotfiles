@@ -66,7 +66,7 @@ local function setup()
       runtimes = {
           {
               name = "JavaSE-1.8",
-              path = "C:/Program Files/Java/jdk1.8.0_222/",
+              path = "C:/Program Files/Java/jdk1.8.0_202/",
           },
           {
               name = "JavaSE-17",
