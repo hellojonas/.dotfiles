@@ -1,5 +1,3 @@
-local lsp = require('user.lsp')
-
 local function setup()
   local jdtls_ok, _ = pcall(require, "jdtls")
   if not jdtls_ok then
@@ -27,9 +25,6 @@ local function setup()
   local workspace_dir = vim.fn.stdpath('data') .. '/site/java/workspace/' .. project_name
   os.execute("mkdir " .. workspace_dir)
 
-  local function on_attach(client, bufnr)
-    lsp.on_attach(client, bufnr)
-  end
 
 
   local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -58,7 +53,6 @@ local function setup()
     init_options = {
       extendedClientCapabilities = capabilities,
     },
-    on_attach = on_attach,
   }
 
   local runtimes = {}
