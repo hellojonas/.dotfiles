@@ -17,4 +17,8 @@ return {
       version = "v2.*",
       build = "make install_jsregexp"
   },
+  {
+      'lewis6991/gitsigns.nvim',
+      config= true
+  }
 }

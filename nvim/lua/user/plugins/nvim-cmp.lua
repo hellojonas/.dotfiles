@@ -1,5 +1,6 @@
 local function setup()
-    local cmp = require'cmp'
+    local cmp = require 'cmp'
+    local lspkind = require 'lspkind'
 
     cmp.setup({
         snippet = {
@@ -8,10 +9,24 @@ local function setup()
                 require('luasnip').lsp_expand(args.body)
             end,
         },
+        formatting = {
+            format = lspkind.cmp_format({
+                mode = 'symbol',
+                ellipsis_char = '...',
+                show_labelDetails = true,
+                max_width = 50
+            }),
+        },
         completion = { completeopt = 'menu,menuone,noinsert' },
         window = {
-            -- completion = cmp.config.window.bordered(),
-            -- documentation = cmp.config.window.bordered(),
+            documentation = {
+                max_width = 120
+            }
+        },
+        view = {
+            docs = {
+                auto_open = true
+            },
         },
         mapping = cmp.mapping.preset.insert({
             ['<C-b>'] = cmp.mapping.scroll_docs(-4),
@@ -55,6 +70,7 @@ return {
         'hrsh7th/cmp-buffer',
         'hrsh7th/cmp-path',
         'hrsh7th/cmp-cmdline',
+        'onsails/lspkind.nvim'
     },
     config = setup
 }

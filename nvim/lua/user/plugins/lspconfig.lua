@@ -25,6 +25,11 @@ local function setup()
         ensure_installed = vim.tbl_keys(servers),
     }
 
+    vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
+    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+    vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+    vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
+
     vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
         callback = function(event)
@@ -39,8 +44,10 @@ local function setup()
             map('<leader>ds', require('telescope.builtin').lsp_document_symbols)
             map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols)
             map('<leader>rn', vim.lsp.buf.rename)
+            map('<leader>rN', vim.lsp.buf.rename)
             map('<leader>ca', vim.lsp.buf.code_action)
             map('K', vim.lsp.buf.hover)
+            map('gK', vim.lsp.buf.signature_help)
             map('gD', vim.lsp.buf.declaration)
             map('<leader>fd', function ()
                 vim.lsp.buf.format({ async = true })

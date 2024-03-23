@@ -3,9 +3,7 @@ local function nmap(key, action)
 end
 
 nmap('<Esc>', '<cmd>nohlsearch<CR>')
-nmap('<leader>fe', '<cmd>Explore<CR>')
-nmap('<leader>db', '<cmd>bdelete!<CR>')
-nmap('<leader>gc', '<cmd>e $MYVIMRC<CR>')
+nmap('<leader>db', '<cmd>bw!<CR>')
 
 nmap('<C-k>', '<C-w>k')
 nmap('<C-j>', '<C-w>j')
