@@ -2,16 +2,13 @@ require('user.settings')
 require('user.keymap')
 require('user.lazy')
 
--- highlight text on yank
--- open telescope on startup
-
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+    group = highlight_group,
+    pattern = '*',
 })
 
 local telescope_on_startup_group = vim.api.nvim_create_augroup('TelescopOnStartup', { clear = true })

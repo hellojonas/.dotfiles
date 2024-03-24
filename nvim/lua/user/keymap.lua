@@ -4,6 +4,8 @@ end
 
 nmap('<Esc>', '<cmd>nohlsearch<CR>')
 nmap('<leader>db', '<cmd>bw!<CR>')
+nmap('<leader>fe', '<cmd>20Lex<CR>')
+nmap('<leader>r', '<cmd>source $MYVIMRC<CR>')
 
 nmap('<C-k>', '<C-w>k')
 nmap('<C-j>', '<C-w>j')

@@ -2,8 +2,9 @@ vim.g.mapleader = ' '
 vim.g.maplocaleader = ' '
 
 
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwPlugin = 1
+vim.g.netrw_liststyle = 3
 
 vim.opt.backup = false -- creates a backup file
 vim.opt.swapfile = false -- creates a swapfile

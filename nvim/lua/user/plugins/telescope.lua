@@ -24,10 +24,11 @@ local function setup()
     vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
     vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
     vim.keymap.set('n', '<leader>/', builtin.current_buffer_fuzzy_find, {})
-    vim.keymap.set('n', '<leader>fe', '<cmd>Telescope file_browser<CR>', {})
-    vim.keymap.set('n', '<leader>eb', '<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>', {})
+    -- vim.keymap.set('n', '<leader>fe', '<cmd>Telescope file_browser<CR>', {})
+    -- vim.keymap.set('n', '<leader>eb', '<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>', {})
 
     require("telescope").load_extension("ui-select")
+    -- require("telescope").load_extension("telescope-file-browser")
 end
 
 return {
@@ -37,7 +38,7 @@ return {
         'nvim-lua/plenary.nvim',
         'nvim-tree/nvim-web-devicons',
         'nvim-telescope/telescope-ui-select.nvim',
-        'nvim-telescope/telescope-file-browser.nvim'
+        -- 'nvim-telescope/telescope-file-browser.nvim'
     },
     config = setup
 }
