@@ -1,7 +1,6 @@
 return {
   'tpope/vim-repeat',
   'tpope/vim-surround',
-  'tpope/vim-fugitive',
   {
      'windwp/nvim-autopairs',
       event = "InsertEnter",
@@ -17,8 +16,4 @@ return {
       version = "v2.*",
       build = "make install_jsregexp"
   },
-  {
-      'lewis6991/gitsigns.nvim',
-      config= true
-  }
 }
