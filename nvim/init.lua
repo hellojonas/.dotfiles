@@ -15,10 +15,6 @@ local telescope_on_startup_group = vim.api.nvim_create_augroup('TelescopOnStartu
 vim.api.nvim_create_autocmd('VimEnter', {
     group = telescope_on_startup_group,
     callback = function(e)
-        local path = require('plenary.path')
-        local isDir = path.is_dir(path.new(e.file))
-        if isDir then
-            require('telescope.builtin').find_files()
-        end
+        require('telescope.builtin').find_files()
     end
 })

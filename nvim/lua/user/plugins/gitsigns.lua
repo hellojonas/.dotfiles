@@ -8,6 +8,7 @@ return {
             end
 
             map('n', '<leader>gs', '<cmd>Git<CR>')
+            map('n', '<leader>gl', '<cmd>Git log<CR>')
         end
     },
     {
