@@ -16,4 +16,6 @@ nmap('<C-l>', '<C-w>l')
 nmap('gh', '<cmd>diffget //2<CR>')
 nmap('gl', '<cmd>diffget //3<CR>')
 
+nmap('<leader>odb', '<cmd>DBUI<CR>')
+
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
