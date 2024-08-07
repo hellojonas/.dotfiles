@@ -31,6 +31,8 @@ local function setup()
   capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
   capabilities.resolveAdditionalTextEditsSupport = true
 
+  local laucher = vim.fn.glob(jdtls_root .. '/plugins' .. "/org.eclipse.equinox.launcher_1.6*.jar")
+
   local config = {
       cmd = {
           "java",
@@ -46,7 +48,8 @@ local function setup()
           "--add-opens", "java.base/java.util=ALL-UNNAMED",
           "--add-opens", "java.base/java.lang=ALL-UNNAMED",
           "-javaagent:" .. lombok_path,
-          "-jar", jdtls_root .. '/plugins' .. "/org.eclipse.equinox.launcher_1.6.700.v20231214-2017.jar", -- TODO: glob this with lua itself
+          -- "-jar", jdtls_root .. '/plugins' .. "/org.eclipse.equinox.launcher_1.6.900.v20240613-2009.jar", -- TODO: glob this with lua itself
+          "-jar", laucher, -- TODO: glob this with lua itself
           "-data", workspace_dir,
       },
     root_dir = root_dir,
