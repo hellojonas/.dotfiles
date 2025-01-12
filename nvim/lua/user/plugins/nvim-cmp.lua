@@ -61,6 +61,10 @@ local function setup()
         })
     })
 
+    cmp.setup.filetype('zig', {
+        sources = {}
+    })
+
     local cmp_autopairs = require('nvim-autopairs.completion.cmp')
     cmp.event:on(
         'confirm_done',

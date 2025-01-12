@@ -37,7 +37,8 @@ local function setup()
                 vim.keymap.set('n', keys, func, { buffer = event.buf })
             end
 
-            map('gd', require('telescope.builtin').lsp_definitions)
+            -- map('gd', require('telescope.builtin').lsp_definitions)
+            map('gd', vim.lsp.buf.definition)
             map('gr', require('telescope.builtin').lsp_references)
             map('gI', require('telescope.builtin').lsp_implementations)
             map('<leader>D', require('telescope.builtin').lsp_type_definitions)
