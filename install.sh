@@ -5,8 +5,9 @@ if [ ! -d "$HOME/.config" ]; then
 	mkdir -p "$HOME/.config"
 fi
 
-echo "installing apps & dependencies"
+echo "updating system"
 sudo pacman -Syu --noconfirm
+echo "installing apps & dependencies"
 sudo pacman -S --noconfirm base-devel ripgrep fzf go neovim tmux alacritty firefox
 
 echo "creating symlink for configs"
