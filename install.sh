@@ -21,8 +21,16 @@ ln -s $HOME/.dotfiles/alacritty/ $HOME/.config/alacritty
 
 # install fonts
 echo "installing fonts"
-tar xzf $HOME/.dotfiles/fonts/SourceCodePro.tar.gz -C $HOME/.local/share/fonts
-chmod 555 $HOME/.local/share/fonts/*
+
+FONTS_DIR=$HOME/.local/share/fonts
+
+if [ ! -d "$FONTS_DIR" ]; then
+	echo "creating fonts directory"
+	mkdir -p "$FONTS_DIR"
+fi
+
+tar xzf $HOME/.dotfiles/fonts/SourceCodePro.tar.gz -C "$FONTS_DIR"
+chmod 555 "$FONTS_DIR"/*
 fc-cache
 
 # update env
