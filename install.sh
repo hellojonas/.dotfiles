@@ -1,10 +1,18 @@
 #!/usr/bin/env bash
 
 # update system, install apps and dependencies
-echo "updating system"
-sudo pacman -Syu --noconfirm
+# echo "updating system"
+# sudo pacman -Syu --noconfirm
 echo "installing apps & dependencies"
-sudo pacman -S --noconfirm base-devel ripgrep fzf go neovim tmux alacritty firefox
+sudo pacman -S --noconfirm \
+	base-devel ripgrep fzf go neovim tmux alacritty  firefox nvm \
+	jre8-openjdk-headless jre8-openjdk jdk8-openjdk openjdk8-doc openjdk8-src \
+	jre17-openjdk-headless jre17-openjdk jdk17-openjdk openjdk17-doc \
+	openjdk17-src
+
+# set default java versjion
+echo "set java-17 as default"
+sudo archlinux-java set java-17-openjdk
 
 # check if config floder exists
 if [ ! -d "$HOME/.config" ]; then
