@@ -43,4 +43,5 @@ fc-cache
 
 # update env
 echo "updating env"
+echo 'source /usr/share/nvm/init-nvm.sh' >> $HOME/.bashrc
 echo 'export PATH=$HOME/.local/bin/:$PATH' >> $HOME/.bashrc
