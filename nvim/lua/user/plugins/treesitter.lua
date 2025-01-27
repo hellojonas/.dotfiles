@@ -1,5 +1,6 @@
 local function setup()
     local configs = require("nvim-treesitter.configs")
+
     configs.setup({
         ensure_installed = { "c", "lua", "vim", "vimdoc", "go", "javascript", "bash", "comment", "html" },
         sync_install = false,
@@ -10,13 +11,6 @@ local function setup()
         },
         indent = { enable = true },
     })
-
-    require("lazy").setup({ {
-        "nvim-treesitter/nvim-treesitter",
-        build = ":TSUpdate",
-        config = function()
-        end
-    } })
 end
 
 return {
