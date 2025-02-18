@@ -1,5 +1,6 @@
 local function setup()
     require('neodev').setup({})
+    require('java').setup()
 
     local servers = {
         lua_ls = {
@@ -14,9 +15,7 @@ local function setup()
         jdtls = {}
     }
 
-    local excluded_servers = {
-        "jdtls"
-    }
+    local excluded_servers = {}
 
 
     local mason_lspconfig = require('mason-lspconfig')
@@ -50,7 +49,7 @@ local function setup()
             map('K', vim.lsp.buf.hover)
             map('gK', vim.lsp.buf.signature_help)
             map('gD', vim.lsp.buf.declaration)
-            map('<leader>fd', function ()
+            map('<leader>fd', function()
                 vim.lsp.buf.format({ async = true })
             end)
 
@@ -90,10 +89,10 @@ end
 return {
     'neovim/nvim-lspconfig',
     dependencies = {
-        { 'williamboman/mason.nvim', config = true},
+        { 'williamboman/mason.nvim', config = true },
         'williamboman/mason-lspconfig.nvim',
         'hrsh7th/cmp-nvim-lsp',
-        { 'folke/neodev.nvim', opts = {} }
+        { 'folke/neodev.nvim',       opts = {} }
     },
     config = setup
 }
