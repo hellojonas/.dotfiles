@@ -13,7 +13,8 @@ local function setup()
             diagnostics = { disable = { 'missing-fields' } }
         },
         gopls = {},
-        jdtls = {}
+        jdtls = {},
+        jsonls = {}
     }
 
     local mason_lspconfig = require('mason-lspconfig')
@@ -85,8 +86,13 @@ return {
         { 'williamboman/mason.nvim', config = true },
         'williamboman/mason-lspconfig.nvim',
         {
-            "folke/lazydev.nvim",
-            ft = "lua", -- only load on lua files
+            'folke/lazydev.nvim',
+            ft = 'lua',
+            opts = {
+                library = {
+                    { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+                },
+            },
         },
     },
     config = setup
