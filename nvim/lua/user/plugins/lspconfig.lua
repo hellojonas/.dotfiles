@@ -1,6 +1,7 @@
 local function setup()
-    require('neodev').setup({})
+    require('lazydev').setup({})
     require('java').setup()
+    require("neoconf").setup({})
 
     local servers = {
         lua_ls = {
@@ -14,9 +15,6 @@ local function setup()
         gopls = {},
         jdtls = {}
     }
-
-    local excluded_servers = {}
-
 
     local mason_lspconfig = require('mason-lspconfig')
 
@@ -69,15 +67,10 @@ local function setup()
     })
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+    capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 
     mason_lspconfig.setup_handlers {
         function(server_name)
-            for _, value in pairs(excluded_servers) do
-                if value == server_name then
-                    return
-                end
-            end
             require('lspconfig')[server_name].setup {
                 capabilities = capabilities,
                 settings = servers[server_name],
@@ -91,8 +84,10 @@ return {
     dependencies = {
         { 'williamboman/mason.nvim', config = true },
         'williamboman/mason-lspconfig.nvim',
-        'hrsh7th/cmp-nvim-lsp',
-        { 'folke/neodev.nvim',       opts = {} }
+        {
+            "folke/lazydev.nvim",
+            ft = "lua", -- only load on lua files
+        },
     },
     config = setup
 }
